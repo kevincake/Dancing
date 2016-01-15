@@ -4,4 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="main_register_text">注册</string>
+    <string name="main_login_text">登陆</string>
 </resources>

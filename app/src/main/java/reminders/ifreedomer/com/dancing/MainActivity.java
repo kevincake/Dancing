@@ -1,17 +1,58 @@
 package reminders.ifreedomer.com.dancing;
 
+import android.app.Activity;
+import android.net.Uri;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.VideoView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.util.ArrayList;
+
+import reminders.ifreedomer.com.dancing.adapter.GenericAdapter;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
+    private VideoView mVideoView = null;
+    private ViewPager mViewPager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mVideoView = (VideoView) this.findViewById(R.id.bg_videoview);
+        mViewPager = (ViewPager) this.findViewById(R.id.ad_page);
+        mVideoView.setVideoURI(Uri.parse("android.resource://" + this.getPackageName() + "/" + R.raw.intro));
+        mVideoView.start();
+    }
+
+    void initViewPager() {
+
+        ArrayList<View> views = new ArrayList<View>();
+
+        mViewPager.setAdapter(new GenericAdapter(views));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mVideoView.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mVideoView.start();
     }
 
     @Override
