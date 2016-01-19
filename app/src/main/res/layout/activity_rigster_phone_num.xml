@@ -1,0 +1,34 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+    <reminders.ifreedomer.com.dancing.customview.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:hint="@string/please_input_phonenum"
+        android:background="@mipmap/phonenum_et_bg"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/phonenum_et" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/getcode_text"
+        android:id="@+id/getcode_btn"
+        android:layout_below="@+id/phonenum_et"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/getcode_shape"
+        android:layout_alignRight="@+id/phonenum_et"
+        android:layout_alignEnd="@+id/phonenum_et"
+        android:layout_alignLeft="@+id/phonenum_et"
+        android:layout_alignStart="@+id/phonenum_et" />
+</RelativeLayout>

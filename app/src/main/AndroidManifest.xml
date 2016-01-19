@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="reminders.ifreedomer.com.dancing" >
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.NoActionBar" >
         <activity
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:name=".SplashActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,9 +17,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:name=".MainActivity"
-            android:label="@string/title_activity_splash" >
+            android:label="@string/title_activity_splash"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".RigsterPhoneNumActivity"
+            android:label="@string/title_activity_rigster_phone_num" >
         </activity>
     </application>
 
