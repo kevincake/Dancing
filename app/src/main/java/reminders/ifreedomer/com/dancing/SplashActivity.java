@@ -3,15 +3,14 @@ package reminders.ifreedomer.com.dancing;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import cn.smssdk.SMSSDK;
 
 
 public class SplashActivity extends Activity {
@@ -48,6 +47,7 @@ public class SplashActivity extends Activity {
                 handler.sendEmptyMessage(JUMP_2_MAIN);
             }
         }, mSpashShowTime);
+        SMSSDK.initSDK(this, Constants.appkey, Constants.appScret);
     }
 
 }

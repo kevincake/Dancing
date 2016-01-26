@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,8 +15,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
-
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -167,13 +164,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.register_btn) {
-            Log.e(TAG,"jinru");
+            Log.e(TAG, "jinru");
             Intent register = new Intent(this, RigsterPhoneNumActivity.class);
             startActivity(register);
         } else if (id == R.id.login_btn) {
-//            Intent login = new Intentq
-//            Intent login = new Intent(this,)
-
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }
 
     }

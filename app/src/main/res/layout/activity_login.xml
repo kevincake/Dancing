@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <reminders.ifreedomer.com.dancing.customview.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/verifycode_et"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="100dp"
+        android:background="@mipmap/phonenum_et_bg"
+        android:hint="请输入账号" />
+
+    <EditText
+        android:id="@+id/pwd_et"
+        android:layout_below="@+id/verifycode_et"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/phonenum_et_bg"
+        android:hint="@string/please_input_acount" />
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/verifycode_et"
+        android:layout_alignLeft="@+id/verifycode_et"
+        android:layout_alignRight="@+id/verifycode_et"
+        android:layout_alignStart="@+id/verifycode_et"
+        android:layout_below="@+id/pwd_et"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/getcode_shape"
+        android:text="@string/please_input_pwd" />
+
+</RelativeLayout>

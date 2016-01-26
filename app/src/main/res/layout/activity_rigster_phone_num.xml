@@ -31,4 +31,37 @@
         android:layout_alignEnd="@+id/phonenum_et"
         android:layout_alignLeft="@+id/phonenum_et"
         android:layout_alignStart="@+id/phonenum_et" />
+
+    <RelativeLayout
+        android:layout_below="@id/getcode_btn"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/other_register_tv"
+            android:layout_centerInParent="true"
+            android:text="@string/other_way_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/other_register_tv"
+            android:src="@mipmap/title_line"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@id/other_register_tv"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/title_line"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
 </RelativeLayout>

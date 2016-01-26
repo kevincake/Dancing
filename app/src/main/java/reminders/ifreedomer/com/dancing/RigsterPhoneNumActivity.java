@@ -1,23 +1,30 @@
 package reminders.ifreedomer.com.dancing;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import cn.smssdk.SMSSDK;
 import reminders.ifreedomer.com.dancing.customview.TitleView;
 
 
-public class RigsterPhoneNumActivity extends ActionBarActivity {
+public class RigsterPhoneNumActivity extends Activity implements View.OnClickListener {
+
+    EditText phoneNumEt = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rigster_phone_num);
         TitleView titleView = (TitleView) findViewById(R.id.title_view);
+        phoneNumEt = (EditText) findViewById(R.id.phonenum_et);
         titleView.setTitleText(getString(R.string.register_phonenum_title));
+        titleView.setLeftButtonListener(this);
 
     }
 
@@ -41,5 +48,23 @@ public class RigsterPhoneNumActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.back_iv:
+                this.finish();
+                break;
+            case R.id.getcode_btn:
+                if (Util.isMobiPhoneNum(phoneNumEt.getText().toString())) {
+                    SMSSDK.getVerificationCode("+86", "18311362506");
+                    Intent intent = new Intent(this, VerifyCodeActivity.class);
+                    startActivity(intent);
+                } else
+                    Toast.makeText(this, R.string.phonenum_invalid, Toast.LENGTH_SHORT);
+                break;
+        }
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <reminders.ifreedomer.com.dancing.customview.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:hint="@string/please_input_verifycode"
+        android:background="@mipmap/phonenum_et_bg"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/verifycode_et" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/verify_text"
+        android:id="@+id/commit_verfycode_btn"
+        android:layout_below="@+id/verifycode_et"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/getcode_shape"
+        android:layout_alignRight="@+id/verifycode_et"
+        android:layout_alignEnd="@+id/verifycode_et"
+        android:layout_alignLeft="@+id/verifycode_et"
+        android:layout_alignStart="@+id/verifycode_et" />
+
+</RelativeLayout>
