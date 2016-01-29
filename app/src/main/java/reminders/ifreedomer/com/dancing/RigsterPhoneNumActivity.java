@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import cn.smssdk.SMSSDK;
-import reminders.ifreedomer.com.dancing.customview.TitleView;
 
 
 public class RigsterPhoneNumActivity extends Activity implements View.OnClickListener {
@@ -21,10 +20,7 @@ public class RigsterPhoneNumActivity extends Activity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rigster_phone_num);
-        TitleView titleView = (TitleView) findViewById(R.id.title_view);
-        phoneNumEt = (EditText) findViewById(R.id.phonenum_et);
-        titleView.setTitleText(getString(R.string.register_phonenum_title));
-        titleView.setLeftButtonListener(this);
+
 
     }
 

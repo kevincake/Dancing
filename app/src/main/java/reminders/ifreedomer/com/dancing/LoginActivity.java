@@ -1,12 +1,10 @@
 package reminders.ifreedomer.com.dancing;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-
-import reminders.ifreedomer.com.dancing.customview.TitleView;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     Button mLoginBtn;
@@ -14,10 +12,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mLoginBtn = (Button) findViewById(R.id.login_btn);
-        mLoginBtn.setOnClickListener(this);
-        TitleView titleView = (TitleView) findViewById(R.id.title_view);
-        titleView.setLeftButtonListener(this);
+
     }
 
     @Override

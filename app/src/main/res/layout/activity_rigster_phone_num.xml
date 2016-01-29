@@ -1,13 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent">
 
-    <reminders.ifreedomer.com.dancing.customview.TitleView
-        android:id="@+id/title_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
     <EditText
         android:hint="@string/please_input_phonenum"
         android:background="@mipmap/phonenum_et_bg"

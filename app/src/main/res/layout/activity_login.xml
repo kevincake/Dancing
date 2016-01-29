@@ -4,10 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <reminders.ifreedomer.com.dancing.customview.TitleView
-        android:id="@+id/title_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <include
+        layout="@layout/toolbar"/>
 
     <EditText
         android:id="@+id/verifycode_et"
@@ -22,9 +20,9 @@
 
     <EditText
         android:id="@+id/pwd_et"
-        android:layout_below="@+id/verifycode_et"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_below="@+id/verifycode_et"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
