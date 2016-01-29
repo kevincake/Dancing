@@ -1,4 +1,4 @@
-package reminders.ifreedomer.com.dancing;
+package reminders.ifreedomer.com.dancing.fragment;
 
 
 import android.os.Bundle;
@@ -7,14 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import reminders.ifreedomer.com.dancing.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PersonCenterFragment extends Fragment {
+public class BlankFragment extends Fragment {
 
 
-    public PersonCenterFragment() {
+    public BlankFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +24,7 @@ public class PersonCenterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_person_center, container, false);
+        return inflater.inflate(R.layout.fragment_blank, container, false);
     }
 
 }
