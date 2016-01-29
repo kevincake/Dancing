@@ -39,7 +39,7 @@
                 android:id="@+id/content_tbhost"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                app:primaryColor="#009688"
+                app:primaryColor="@color/theme_color"
                 app:accentColor="#ffc400" />
 
             <android.support.v4.view.ViewPager

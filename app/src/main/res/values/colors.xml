@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="theme_color">#ff529688</color>
+    <!--<color name="theme_color">#ff009688</color>-->
+    <color name="theme_color">#ff000000</color>
+    <color name="text_color">#ffffffff</color>
+    <color name="gray_text_color">#ff929292</color>
+    <color name="btn_common_color">#ff51514a</color>
 </resources>
