@@ -97,11 +97,80 @@
         android:id="@+id/tagview_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
         app:lineMargin="5dp"
         app:tagMargin="3dp"
         app:textPaddingBottom="3dp"
         app:textPaddingLeft="10dp"
         app:textPaddingRight="10dp"
-        app:textPaddingTop="3dp"/>
+        app:textPaddingTop="3dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@mipmap/button_like" />
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:id="@+id/likers_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Eava.wu \oter 100 like this"
+            android:textColor="@color/text_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@mipmap/button_comment" />
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:id="@+id/comments_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Eava.wu \oter 100 like this"
+            android:textColor="@color/text_color" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="5dp">
+
+        <TextView
+            android:id="@+id/comment_user_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:text="Eava.wu \oter 100 like this"
+            />
+
+        <TextView
+            android:id="@+id/comment_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:text="Eava.wu \oter 100 like this"
+            android:textColor="@color/gray_text_color" />
+    </LinearLayout>
 </LinearLayout>

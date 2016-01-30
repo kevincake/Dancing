@@ -1,18 +1,22 @@
 package reminders.ifreedomer.com.dancing;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.smssdk.SMSSDK;
 
 
-public class RigsterPhoneNumActivity extends Activity implements View.OnClickListener {
+public class RigsterPhoneNumActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText phoneNumEt = null;
 
@@ -22,14 +26,26 @@ public class RigsterPhoneNumActivity extends Activity implements View.OnClickLis
         setContentView(R.layout.activity_rigster_phone_num);
 
 
+        setUpToolBar();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_rigster_phone_num, menu);
-        return true;
+    private void setUpToolBar() {
+        Toolbar toolbar = (Toolbar) this.findViewById(R.id.phone_toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
+        TextView centerTv = (TextView) toolbar.findViewById(R.id.center_tv);
+        centerTv.setText(getString(R.string.register_title));
+        this.setSupportActionBar(toolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        toolbar.setNavigationIcon(R.mipmap.back);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RigsterPhoneNumActivity.this.finish();
+            }
+        });
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -43,6 +59,7 @@ public class RigsterPhoneNumActivity extends Activity implements View.OnClickLis
             return true;
         }
 
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -50,17 +67,29 @@ public class RigsterPhoneNumActivity extends Activity implements View.OnClickLis
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.back_iv:
-                this.finish();
-                break;
+
             case R.id.getcode_btn:
                 if (Util.isMobiPhoneNum(phoneNumEt.getText().toString())) {
-                    SMSSDK.getVerificationCode("+86", "18311362506");
+                    SMSSDK.getVerificationCode(getString(R.string.cn_phone_code), "18311362506");
                     Intent intent = new Intent(this, VerifyCodeActivity.class);
                     startActivity(intent);
                 } else
                     Toast.makeText(this, R.string.phonenum_invalid, Toast.LENGTH_SHORT);
                 break;
+
+            default:
+                System.out.print("======"+id);
+                break;
+
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.search_menu,menu);
+//        MenuItem menuItem = menu.findItem(R.id.action_search);//在菜单中找到对应控件的item
+//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
 }

@@ -7,7 +7,7 @@ import android.os.Message;
 import android.view.View;
 
 import cn.smssdk.SMSSDK;
-import reminders.ifreedomer.com.dancing.Bean.SMSVerifyBean;
+import reminders.ifreedomer.com.dancing.bean.SMSVerifyBean;
 
 public class VerifyCodeActivity extends Activity implements View.OnClickListener {
     private Handler mHandler = new Handler(){

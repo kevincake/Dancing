@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
+import reminders.ifreedomer.com.dancing.fragment.LessonsFragment;
 import reminders.ifreedomer.com.dancing.fragment.PersonalCenterFragment;
 import reminders.ifreedomer.com.dancing.fragment.SocialFragment;
 
@@ -67,7 +68,7 @@ public class HomePageActivity extends AppCompatActivity implements MaterialTabLi
     }
     private void initFraments(){
         fragments = new ArrayList<Fragment>();
-        fragments.add(new PersonalCenterFragment());
+        fragments.add(new LessonsFragment());
         fragments.add(new SocialFragment());
         fragments.add(new PersonalCenterFragment());
 

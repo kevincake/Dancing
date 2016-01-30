@@ -2,12 +2,15 @@ package reminders.ifreedomer.com.dancing.adapter;
 
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
 import java.util.ArrayList;
 
+import me.kaede.tagview.Tag;
+import me.kaede.tagview.TagView;
 import reminders.ifreedomer.com.dancing.R;
 
 /**
@@ -64,7 +67,12 @@ public class SocialLvAdapter implements ListAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return View.inflate(mContext,R.layout.lv_social_item, null);
+        View view = View.inflate(mContext,R.layout.lv_social_item, null);
+        TagView tagView = (TagView) view.findViewById(R.id.tagview_content);
+        Tag tag = new Tag("Hello", Color.parseColor("#88ffffff"));
+        tag.radius = 0 ;
+        tagView.addTag(tag);
+        return view;
     }
 
     @Override

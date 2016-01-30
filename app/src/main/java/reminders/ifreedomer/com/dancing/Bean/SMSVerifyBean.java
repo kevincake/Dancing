@@ -1,4 +1,4 @@
-package reminders.ifreedomer.com.dancing.Bean;
+package reminders.ifreedomer.com.dancing.bean;
 
 /**
  * Created by eavawu on 1/21/16.

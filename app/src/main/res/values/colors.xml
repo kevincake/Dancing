@@ -4,5 +4,6 @@
     <color name="theme_color">#ff000000</color>
     <color name="text_color">#ffffffff</color>
     <color name="gray_text_color">#ff929292</color>
+    <color name="gray_lignt_text_color">#ffffff</color>
     <color name="btn_common_color">#ff51514a</color>
 </resources>
