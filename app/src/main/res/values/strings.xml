@@ -36,5 +36,7 @@
     <string name="login_failed">不是服务器挂了就是你没联网！</string>
     <string name="input_phonenum">请输入账号</string>
     <string name="register_now"><![CDATA[现在注册 >]]></string>
+    <string name="login_now"><![CDATA[现在登陆 >]]></string>
     <string name="forget_pwd">忘记密码?</string>
+    <string name="agree_ower_layer">注册代表已经同意Dancing用户协议</string>
 </resources>

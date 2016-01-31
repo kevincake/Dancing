@@ -1,87 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/theme_color">
+    <!--<include layout="@layout/common_toolbar"/>-->
 
-    <!--<reminders.ifreedomer.com.dancing.customview.CommonToolBar-->
-    <!--android:layout_height="50dp"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:id="@+id/phone_toolbar"-->
-    <!--android:layout_centerHorizontal="true"/>-->
-    <!--/>-->
-    <include
-        layout="@layout/common_toolbar"
-        android:id="@+id/phone_toolbar" />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/phone_toolbar"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/splash" />
 
-        android:src="@mipmap/line" />
-
-    <EditText
-        android:id="@+id/phonenum_et"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="100dp"
-        android:textColorHint="@color/gray_text_color"
-        android:background="@mipmap/phonenum_et_bg"
-        android:hint="@string/please_input_phonenum"
-        android:gravity="center"
-        android:textColor="@color/text_color" />
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg_color"></FrameLayout>
 
-    <Button
-        android:id="@+id/getcode_btn"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/splash" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/gray_bg_color"
+                android:src="@mipmap/ic_menu" />
+
+            <EditText
+                android:id="@+id/phonenum_et"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+
+                android:background="@color/white_gray_color"
+                android:gravity="center"
+                android:hint="@string/please_input_phonenum"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/gray_text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/white_gray_color"
+                android:src="@mipmap/ic_menu" />
+
+            <EditText
+                android:id="@+id/pwd_et"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray_bg_color"
+                android:gravity="center"
+                android:hint="@string/please_input_verifycode"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/gray_text_color" />
+            <TextView
+                android:drawableLeft="@mipmap/shu_line"
+                android:gravity="center"
+                android:textColor="@color/text_color"
+                android:text="获取验证码"
+                android:background="@color/gray_bg_color"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/getcode_tv"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/getcode_shape"
+            android:textColor="@color/text_color"
+            android:text="@string/register_title" />
+        <TextView
+
+            android:layout_gravity="center"
+            android:textColor="@color/text_color"
+            android:layout_marginTop="20dp"
+            android:text="@string/agree_ower_layer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:text="@string/login_now"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/text_color"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/phonenum_et"
-        android:layout_alignLeft="@+id/phonenum_et"
-        android:layout_alignRight="@+id/phonenum_et"
-        android:layout_alignStart="@+id/phonenum_et"
-        android:layout_below="@+id/phonenum_et"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/getcode_shape"
-        android:text="@string/getcode_text"
-        android:textColor="@color/text_color" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/go_login_tv" />
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avloadingIndicatorView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/getcode_btn"
-        android:layout_marginTop="60dp">
-
-        <TextView
-            android:id="@+id/other_register_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/other_way_register"
-            android:textColor="@color/text_color" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="2dp"
-            android:layout_toLeftOf="@id/other_register_tv"
-            android:src="@mipmap/title_line" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@id/other_register_tv"
-            android:src="@mipmap/title_line" />
-    </RelativeLayout>
-
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        app:indicator="Pacman"
+        app:indicator_color="@color/WHITE" />
 </RelativeLayout>

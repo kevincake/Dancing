@@ -1,18 +1,17 @@
 package reminders.ifreedomer.com.dancing;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cn.smssdk.SMSSDK;
 
@@ -20,32 +19,19 @@ import cn.smssdk.SMSSDK;
 public class RigsterPhoneNumActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText phoneNumEt = null;
-    Button getCodeBtn = null;
+    TextView getCodeTv = null;
+    TextView goLoginTv = null;
+    Timer mTimer = new Timer();
+    private int sub_time = 60;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rigster_phone_num);
-        getCodeBtn = (Button) findViewById(R.id.getcode_btn);
-        getCodeBtn.setOnClickListener(this);
+        getCodeTv = (TextView) findViewById(R.id.getcode_tv);
+        getCodeTv.setOnClickListener(this);
         phoneNumEt = (EditText) findViewById(R.id.phonenum_et);
-        setUpToolBar();
-    }
-
-    private void setUpToolBar() {
-        Toolbar toolbar = (Toolbar) this.findViewById(R.id.phone_toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        TextView centerTv = (TextView) toolbar.findViewById(R.id.center_tv);
-        centerTv.setText(getString(R.string.register_title));
-        this.setSupportActionBar(toolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        toolbar.setNavigationIcon(R.mipmap.back);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RigsterPhoneNumActivity.this.finish();
-            }
-        });
+        goLoginTv = (TextView) findViewById(R.id.go_login_tv);
+        goLoginTv.setOnClickListener(this);
     }
 
 
@@ -64,21 +50,44 @@ public class RigsterPhoneNumActivity extends AppCompatActivity implements View.O
 
         return super.onOptionsItemSelected(item);
     }
+    private void beginTimer(){
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
 
+                runOnUiThread(new Runnable() {      // UI thread
+                    @Override
+                    public void run() {
+                        sub_time--;
+                        getCodeTv.setText(sub_time + "s");
+                        if(sub_time < 0){
+                            getCodeTv.setText(getResources().getString(R.string.getcode_text));
+                            mTimer.cancel();
+                        }
+                    }
+                });
+            }
+        };
+        mTimer.schedule(task, 0, 1000);
+    }
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
 
-            case R.id.getcode_btn:
+            case R.id.getcode_tv:
                 if (Util.isMobiPhoneNum(phoneNumEt.getText().toString())) {
                     SMSSDK.getVerificationCode(getString(R.string.cn_phone_code), "18311362506");
-                    Intent intent = new Intent(this, VerifyCodeActivity.class);
-                    startActivity(intent);
+                    beginTimer();
+//                    Intent intent = new Intent(this, VerifyCodeActivity.class);
+//                    startActivity(intent);
                 } else
                     Toast.makeText(this, R.string.phonenum_invalid, Toast.LENGTH_SHORT);
                 break;
-
+            case R.id.go_login_tv:
+                Intent intent = new Intent(this,LoginActivity.class);
+                startActivity(intent);
+                break;
             default:
                 System.out.print("======"+id);
                 break;
