@@ -1,16 +1,12 @@
 package reminders.ifreedomer.com.dancing;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -28,7 +24,7 @@ import java.util.Map;
 import cz.msebera.android.httpclient.Header;
 import reminders.ifreedomer.com.dancing.bean.User;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends Activity implements View.OnClickListener {
     Button mLoginBtn;
     EditText phoneEt;
     EditText pwdEt;
@@ -43,27 +39,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         phoneEt = (EditText) findViewById(R.id.phonenum_et);
         pwdEt = (EditText) findViewById(R.id.pwd_et);
         loadingView = (AVLoadingIndicatorView) findViewById(R.id.avloadingIndicatorView);
-        setUpToolBar();
+//        setUpToolBar();
     }
 
 
     private void setUpToolBar() {
-        Toolbar toolbar = (Toolbar) this.findViewById(R.id.login_toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-//        toolbar.setCenterTitle(getString(R.string.register_title));
-        this.setSupportActionBar(toolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        toolbar.setNavigationIcon(R.mipmap.back);
-        TextView centerTv = (TextView) toolbar.findViewById(R.id.center_tv);
-//        centerTv.setText(R.string.login_title);
-        centerTv.setText(getString(R.string.login_title));
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginActivity.this.finish();
-            }
-        });
+//        Toolbar toolbar = (Toolbar) this.findViewById(R.id.login_toolbar);
+//        toolbar.setTitleTextColor(Color.WHITE);
+////        toolbar.setCenterTitle(getString(R.string.register_title));
+//        this.setSupportActionBar(toolbar);
+//        ActionBar supportActionBar = getSupportActionBar();
+//        toolbar.setNavigationIcon(R.mipmap.back);
+//        TextView centerTv = (TextView) toolbar.findViewById(R.id.center_tv);
+////        centerTv.setText(R.string.login_title);
+//        centerTv.setText(getString(R.string.login_title));
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                LoginActivity.this.finish();
+//            }
+//        });
     }
 
 

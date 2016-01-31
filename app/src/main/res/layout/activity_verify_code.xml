@@ -2,30 +2,41 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/theme_color"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/phone_toolbar"
+        layout="@layout/common_toolbar" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phone_toolbar"
+        android:src="@mipmap/line" />
+
     <EditText
-        android:hint="@string/please_input_verifycode"
-        android:background="@mipmap/phonenum_et_bg"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/verifycode_et"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/verifycode_et" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="100dp"
+        android:background="@mipmap/phonenum_et_bg"
+        android:hint="@string/please_input_verifycode" />
 
     <Button
+        android:id="@+id/commit_verfycode_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/verify_text"
-        android:id="@+id/commit_verfycode_btn"
+        android:layout_alignEnd="@+id/verifycode_et"
+        android:layout_alignLeft="@+id/verifycode_et"
+        android:layout_alignRight="@+id/verifycode_et"
+        android:layout_alignStart="@+id/verifycode_et"
         android:layout_below="@+id/verifycode_et"
         android:layout_marginTop="30dp"
         android:background="@drawable/getcode_shape"
-        android:layout_alignRight="@+id/verifycode_et"
-        android:layout_alignEnd="@+id/verifycode_et"
-        android:layout_alignLeft="@+id/verifycode_et"
-        android:layout_alignStart="@+id/verifycode_et" />
+        android:text="@string/verify_text" />
 
 </RelativeLayout>

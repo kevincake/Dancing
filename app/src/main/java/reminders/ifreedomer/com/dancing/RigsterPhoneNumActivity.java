@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,13 +20,14 @@ import cn.smssdk.SMSSDK;
 public class RigsterPhoneNumActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText phoneNumEt = null;
-
+    Button getCodeBtn = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rigster_phone_num);
-
-
+        getCodeBtn = (Button) findViewById(R.id.getcode_btn);
+        getCodeBtn.setOnClickListener(this);
+        phoneNumEt = (EditText) findViewById(R.id.phonenum_et);
         setUpToolBar();
     }
 
