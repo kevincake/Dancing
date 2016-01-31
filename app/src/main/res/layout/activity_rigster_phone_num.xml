@@ -29,9 +29,10 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="100dp"
-        android:textColorHint="@color/text_color"
+        android:textColorHint="@color/gray_text_color"
         android:background="@mipmap/phonenum_et_bg"
         android:hint="@string/please_input_phonenum"
+        android:gravity="center"
         android:textColor="@color/text_color" />
 
     <Button

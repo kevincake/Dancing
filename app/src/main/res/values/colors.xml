@@ -7,4 +7,5 @@
     <color name="gray_lignt_text_color">#ffffff</color>
     <color name="btn_common_color">#ff51514a</color>
     <color name="item_bg_color">#ff292922</color>
+    <color name="WHITE">#ffffffff</color>
 </resources>

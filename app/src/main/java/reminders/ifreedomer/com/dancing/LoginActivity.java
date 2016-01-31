@@ -6,12 +6,33 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestHandle;
+import com.wang.avi.AVLoadingIndicatorView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import cz.msebera.android.httpclient.Header;
+import reminders.ifreedomer.com.dancing.bean.User;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     Button mLoginBtn;
+    EditText phoneEt;
+    EditText pwdEt;
+    AVLoadingIndicatorView loadingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +40,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         mLoginBtn = (Button) findViewById(R.id.login_btn);
         mLoginBtn.setOnClickListener(this);
+        phoneEt = (EditText) findViewById(R.id.phonenum_et);
+        pwdEt = (EditText) findViewById(R.id.pwd_et);
+        loadingView = (AVLoadingIndicatorView) findViewById(R.id.avloadingIndicatorView);
         setUpToolBar();
     }
 
@@ -48,8 +72,45 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         int id = v.getId();
         switch (id) {
             case R.id.login_btn:
-                Intent intent = new Intent(this, HomePageActivity.class);
-                startActivity(intent);
+                AsyncHttpClient client = new AsyncHttpClient();
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("account", phoneEt.getText().toString().trim());
+                map.put("password", pwdEt.getText().toString().trim());
+                loadingView.setVisibility(View.VISIBLE);
+                String loginUrl = URLS.getLoginUrl(map);
+                Log.e("wuyihua=====",loginUrl);
+                RequestHandle requestHandle = client.get(loginUrl, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        JSONObject obj = null;
+                        try {
+                            obj = new JSONObject(new String(responseBody));
+                            int resultCode = obj.getInt("result");
+                            if (resultCode == Constants.OK) {
+                                Gson gson = new Gson();
+                                Global.setmGlobalUser(gson.fromJson(obj.getString("data"), User.class));
+                                Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Util.showWhiteToast(LoginActivity.this,obj.getString("errno"),Toast.LENGTH_SHORT);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } finally {
+                            loadingView.setVisibility(View.GONE);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        Util.showWhiteToast(LoginActivity.this,getResources().getString(R.string.login_failed),Toast.LENGTH_SHORT);
+//                        Toast toast = Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_failed), Toast.LENGTH_SHORT);
+
+                        loadingView.setVisibility(View.GONE);
+                    }
+                });
+
                 break;
             case R.id.back_iv:
                 this.finish();
