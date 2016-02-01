@@ -98,13 +98,13 @@
                 android:background="@color/white_gray_color"
                 android:src="@mipmap/ic_menu" />
 
-            <EditText
-                android:id="@+id/fullinfo_yearsold_et"
+            <TextView
+                android:id="@+id/fullinfo_yearsold_tv"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:background="@color/gray_bg_color"
                 android:gravity="center"
-                android:hint="@string/please_input_verifycode"
+                android:hint="年龄"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/gray_text_color" />
             <TextView

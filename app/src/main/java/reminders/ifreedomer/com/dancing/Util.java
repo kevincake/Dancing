@@ -46,4 +46,6 @@ public class Util {
         String re = "^(?=.*[0-9])(?=.*[a-zA-Z])(?!.*\\W).{6,20}$";
         return str.matches(re);
     }
+
+
 }

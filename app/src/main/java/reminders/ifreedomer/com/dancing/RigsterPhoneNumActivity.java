@@ -25,6 +25,7 @@ public class RigsterPhoneNumActivity extends AppCompatActivity implements View.O
     TextView getCodeTv = null;
     TextView goLoginTv = null;
     Button registerBtn = null;
+    EditText verifyCodeEt = null;
     Timer mTimer = new Timer();
     private int sub_time = 60;
     EventHandler eh;
@@ -38,8 +39,10 @@ public class RigsterPhoneNumActivity extends AppCompatActivity implements View.O
         phoneNumEt = (EditText) findViewById(R.id.phonenum_et);
         goLoginTv = (TextView) findViewById(R.id.go_login_tv);
         registerBtn = (Button) findViewById(R.id.register_btn);
+        verifyCodeEt = (EditText) findViewById(R.id.verifycode_et);
         registerBtn.setOnClickListener(this);
         goLoginTv.setOnClickListener(this);
+
         eh = new EventHandler() {
 
             @Override
@@ -57,6 +60,7 @@ public class RigsterPhoneNumActivity extends AppCompatActivity implements View.O
                         //返回支持发送验证码的国家列表
                     }
                 } else {
+                    Util.showWhiteToast(RigsterPhoneNumActivity.this, getString(R.string.verifycode_error), Toast.LENGTH_LONG);
                     ((Throwable) data).printStackTrace();
                 }
             }
@@ -97,6 +101,7 @@ public class RigsterPhoneNumActivity extends AppCompatActivity implements View.O
                             mTimer.cancel();
                             getCodeTv.setClickable(true);
                             mTimer = null;
+                            sub_time=60;
                         }
                     }
                 });
@@ -128,16 +133,17 @@ public class RigsterPhoneNumActivity extends AppCompatActivity implements View.O
                 SMSVerifyBean verifyBean = new SMSVerifyBean();
                 verifyBean.setPhoneNum(phoneNumEt.getText().toString());
                 Global.setmGlobalVerifyBean(verifyBean);
-                Intent fullInfoIntent = new Intent(RigsterPhoneNumActivity.this, FullUserInfoActivity.class);
-                startActivity(fullInfoIntent);
-
-//                return;
-//                if (!Util.isMobiPhoneNum(phoneNumEt.getText().toString())) {
-//                    Util.showWhiteToast(this, getResources().getString(R.string.phonenum_invalid), Toast.LENGTH_SHORT);
-//                    return;
-//                }
-//                SMSSDK.submitVerificationCode(getString(R.string.contry_code), phoneNumEt.getText().toString(), SMSVerifyBean.getVerifyCode());
-
+                if (!Util.isMobiPhoneNum(phoneNumEt.getText().toString())) {
+                    Util.showWhiteToast(this, getResources().getString(R.string.phonenum_invalid), Toast.LENGTH_SHORT);
+                    return;
+                }
+                if (verifyCodeEt.getText().toString().isEmpty()){
+                    Util.showWhiteToast(this, getString(R.string.register_verifycode_notips), Toast.LENGTH_SHORT);
+                    return;
+                }
+//                Intent intent1 = new Intent(this,FullUserInfoActivity.class);
+//                startActivity(intent1);
+                SMSSDK.submitVerificationCode(getString(R.string.contry_code), phoneNumEt.getText().toString(), verifyCodeEt.getText().toString());
                 break;
             default:
                 System.out.print("======" + id);

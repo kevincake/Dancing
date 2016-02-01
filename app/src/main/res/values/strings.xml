@@ -47,4 +47,6 @@
     <string name="info_sex_tips">我实在不知道你是男是女</string>
     <string name="info_nousername_tips">用户名都不输入,你要逆天啊~</string>
     <string name="contry_code">86</string>
+    <string name="verifycode_error">验证码错误</string>
+    <string name="register_verifycode_notips">验证码为空</string>
 </resources>

@@ -76,7 +76,7 @@
                 android:src="@mipmap/ic_menu" />
 
             <EditText
-                android:id="@+id/pwd_et"
+                android:id="@+id/verifycode_et"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:background="@color/gray_bg_color"

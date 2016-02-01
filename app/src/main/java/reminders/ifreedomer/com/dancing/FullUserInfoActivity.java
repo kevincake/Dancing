@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import cn.qqtheme.framework.picker.NumberPicker;
 import cn.qqtheme.framework.picker.OptionPicker;
 import cn.smssdk.SMSSDK;
 import cz.msebera.android.httpclient.Header;
@@ -39,10 +41,11 @@ public class FullUserInfoActivity extends Activity implements View.OnClickListen
     private TextView back2RegisterTv;
     private EditText userNameEt;
     private EditText pwdEt;
-    private EditText yearOldEt;
+    private TextView yearOldTv;
     private TextView sexTv;
     private Button commitInfoBtn;
     private CircleImageView userHeadIv;
+    private AVLoadingIndicatorView loadingIndicatorView;
     private static final int PICK_PHOTO_FOR_AVATAR = 1024;
     private static final int TAKE_PHOTO_FOR_AVATAR = 110;
     InputStream inputStream = null;
@@ -56,15 +59,17 @@ public class FullUserInfoActivity extends Activity implements View.OnClickListen
         back2RegisterTv = (TextView) findViewById(R.id.fullinfo_back2register_tv);
         userNameEt = (EditText) findViewById(R.id.fullinfo_username_et);
         pwdEt = (EditText) findViewById(R.id.fullinfo_pwd_et);
-        yearOldEt = (EditText) findViewById(R.id.fullinfo_yearsold_et);
+        yearOldTv = (TextView) findViewById(R.id.fullinfo_yearsold_tv);
         sexTv = (TextView) findViewById(R.id.fullinfo_sex_tv);
         commitInfoBtn = (Button) findViewById(R.id.fullinfo_commit_btn);
         userHeadIv = (CircleImageView) findViewById(R.id.fullinfo_userhead_iv);
+        loadingIndicatorView = (AVLoadingIndicatorView) findViewById(R.id.avloadingIndicatorView);
         userHeadIv.setOnClickListener(this);
         sexTv.setOnClickListener(this);
         commitInfoBtn.setOnClickListener(this);
         back2RegisterTv.setOnClickListener(this);
-        uploadFile= new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
+        yearOldTv.setOnClickListener(this);
+        uploadFile = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
 
     }
 
@@ -124,7 +129,7 @@ public class FullUserInfoActivity extends Activity implements View.OnClickListen
                 try {
                     originalUri = data.getData();
                     inputStream = getContentResolver().openInputStream(data.getData());
-                    inputStream2File(inputStream,uploadFile);
+                    inputStream2File(inputStream, uploadFile);
                     String path = uploadFile.getPath();
                     userHeadIv.setImageBitmap(BitmapFactory.decodeFile(uploadFile.getPath()));
 
@@ -137,7 +142,7 @@ public class FullUserInfoActivity extends Activity implements View.OnClickListen
             case TAKE_PHOTO_FOR_AVATAR:
                 try {
                     inputStream = (FileInputStream) getContentResolver().openInputStream(Uri.parse(originalUri.toString()));
-                    inputStream2File(inputStream,uploadFile);
+                    inputStream2File(inputStream, uploadFile);
                     userHeadIv.setImageBitmap(BitmapFactory.decodeFile(uploadFile.getPath()));
 
                 } catch (FileNotFoundException e) {
@@ -172,6 +177,19 @@ public class FullUserInfoActivity extends Activity implements View.OnClickListen
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
+            case R.id.fullinfo_yearsold_tv:
+                NumberPicker yearOldPicker = new NumberPicker(this);
+                yearOldPicker.setOffset(2);//偏移量
+                yearOldPicker.setRange(1, 120);//数字范围
+                yearOldPicker.setSelectedItem(1);
+                yearOldPicker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
+                    @Override
+                    public void onOptionPicked(String option) {
+                        yearOldTv.setText(option);
+                    }
+                });
+                yearOldPicker.show();
+                break;
             case R.id.fullinfo_userhead_iv:
                 OptionPicker photoPicker = new OptionPicker(this, new String[]{
                         "拍照", "从相册选择"
@@ -225,7 +243,7 @@ public class FullUserInfoActivity extends Activity implements View.OnClickListen
                     Util.showWhiteToast(FullUserInfoActivity.this, getString(R.string.info_sex_tips), Toast.LENGTH_LONG);
                     return;
                 }
-                if (userNameEt.toString().isEmpty()) {
+                if (userNameEt.getText().toString().isEmpty()) {
                     Util.showWhiteToast(FullUserInfoActivity.this, getString(R.string.info_nousername_tips), Toast.LENGTH_LONG);
                     return;
                 }
@@ -236,7 +254,7 @@ public class FullUserInfoActivity extends Activity implements View.OnClickListen
                 AsyncHttpClient client = new AsyncHttpClient();
                 RequestParams params = new RequestParams();
                 params.put(Constants.ACCOUNT_KEY, Global.getmGlobalVerifyBean().getPhoneNum());
-                params.put(Constants.BIRTHDAY_KEY, yearOldEt.getText().toString());
+                params.put(Constants.BIRTHDAY_KEY, yearOldTv.getText().toString());
                 params.put(Constants.PASSWORLD_KEY, pwdEt.getText().toString());
                 params.put(Constants.SEX_KEY, ((sexTv.getText().toString().equals("女")) ? 0 : 1) + "");
                 params.put(Constants.USERNAME_KEY, userNameEt.getText().toString());
@@ -248,16 +266,18 @@ public class FullUserInfoActivity extends Activity implements View.OnClickListen
 //                    String path = inputStream2File();
 //                    File tmpFile = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
 //                    inputStream2File(inputStream,tmpFile);
-                    params.put(Constants.HEADIMG_KEY,uploadFile );
+                    params.put(Constants.HEADIMG_KEY, uploadFile);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                loadingIndicatorView.setVisibility(View.VISIBLE);
 //                params.put(Constants.HEADIMG_KEY, BitmapFactory.decodeResource())
                 client.post(URLS.REGISTER_URL, params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        loadingIndicatorView.setVisibility(View.INVISIBLE);
                         JSONObject obj = null;
                         try {
                             obj = new JSONObject(new String(responseBody));
@@ -278,7 +298,7 @@ public class FullUserInfoActivity extends Activity implements View.OnClickListen
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                        loadingIndicatorView.setVisibility(View.INVISIBLE);
                     }
                 });
                 break;
