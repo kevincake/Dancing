@@ -36,4 +36,14 @@ public class Util {
         v.setTextColor(Color.WHITE);
         toast.show();
     }
+
+    /**
+     * 判断密码是否合法
+     * @param str
+     * @return
+     */
+    public static boolean isPassword(String str){
+        String re = "^(?=.*[0-9])(?=.*[a-zA-Z])(?!.*\\W).{6,20}$";
+        return str.matches(re);
+    }
 }

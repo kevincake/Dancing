@@ -39,4 +39,12 @@
     <string name="login_now"><![CDATA[现在登陆 >]]></string>
     <string name="forget_pwd">忘记密码?</string>
     <string name="agree_ower_layer">注册代表已经同意Dancing用户协议</string>
+    <string name="back2register"><![CDATA[返回注册 >]]></string>
+    <string name="info_username_text">请输入用户名</string>
+    <string name="info_full_userinfo">填写完毕</string>
+    <string name="info_sex">性别</string>
+    <string name="info_password_invalid">密码不合法</string>
+    <string name="info_sex_tips">我实在不知道你是男是女</string>
+    <string name="info_nousername_tips">用户名都不输入,你要逆天啊~</string>
+    <string name="contry_code">86</string>
 </resources>

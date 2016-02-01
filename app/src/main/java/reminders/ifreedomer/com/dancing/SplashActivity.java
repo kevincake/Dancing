@@ -40,6 +40,7 @@ public class SplashActivity extends Activity {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
         ImageLoader.getInstance().init(config);
         setContentView(R.layout.activity_splash);
+        SMSSDK.initSDK(this, Constants.appkey, Constants.appScret);
         m_context = this;
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -47,7 +48,7 @@ public class SplashActivity extends Activity {
                 handler.sendEmptyMessage(JUMP_2_MAIN);
             }
         }, mSpashShowTime);
-        SMSSDK.initSDK(this, Constants.appkey, Constants.appScret);
+
     }
 
 }
