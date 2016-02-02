@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,12 +71,6 @@ public class PersonalCenterFragment extends Fragment implements MaterialTabListe
         ImageLoader loader = ImageLoader.getInstance();
 //        String url = Global.getmGlobalUser().getHeadIcon();
 //        loader.displayImage(url, headerIv);
-//        view.post(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        })
 
         return view;
     }
@@ -99,7 +93,7 @@ public class PersonalCenterFragment extends Fragment implements MaterialTabListe
         }
     }
 
-    private class PersonViewPagerAdapter extends FragmentStatePagerAdapter {
+    private class PersonViewPagerAdapter extends FragmentPagerAdapter {
         public PersonViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
