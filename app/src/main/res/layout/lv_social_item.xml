@@ -63,7 +63,7 @@
     <ImageView
         android:id="@+id/show_iv"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="270dp"
         android:layout_gravity="center_horizontal"
         android:scaleType="centerCrop"
         android:src="@mipmap/splash" />

@@ -2,6 +2,7 @@ package reminders.ifreedomer.com.dancing.fragment;
 
 
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
@@ -21,10 +25,13 @@ import reminders.ifreedomer.com.dancing.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PersonalCenterFragment extends Fragment implements  MaterialTabListener {
+public class PersonalCenterFragment extends Fragment implements MaterialTabListener {
 
     ArrayList<Fragment> fragments;
     private Resources res;
+    ViewPager pager;
+    PersonViewPagerAdapter pagerAdapter;
+
     public PersonalCenterFragment() {
         // Required empty public constructor
     }
@@ -34,15 +41,17 @@ public class PersonalCenterFragment extends Fragment implements  MaterialTabList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_person_center, container, false);
+        View view = inflater.inflate(R.layout.fragment_person_center, container, false);
+        CircleImageView headerIv = (CircleImageView) view.findViewById(R.id.head_iv);
         final MaterialTabHost tabHost = (MaterialTabHost) view.findViewById(R.id.content_tbhost);
-        ViewPager pager = (ViewPager) view.findViewById(R.id.person_viewpager);
+        pager = (ViewPager) view.findViewById(R.id.person_viewpager);
         // init view pager
         initFraments();
-        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+
+        PersonViewPagerAdapter pagerAdapter = new PersonViewPagerAdapter(getChildFragmentManager());
         pager.setAdapter(pagerAdapter);
         res = getResources();
-        pager.setFocusableInTouchMode(false);
+//        pager.setFocusableInTouchMode(false);
         pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -59,33 +68,62 @@ public class PersonalCenterFragment extends Fragment implements  MaterialTabList
             );
         }
 
+        ImageLoader loader = ImageLoader.getInstance();
+//        String url = Global.getmGlobalUser().getHeadIcon();
+//        loader.displayImage(url, headerIv);
+//        view.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        })
+
         return view;
     }
-    private void initFraments(){
-        fragments = new ArrayList<Fragment>();
-        fragments.add(new BlankFragment());
-        fragments.add(new BlankFragment());
-        fragments.add(new BlankFragment());
 
+    private void initFraments() {
+        fragments = new ArrayList<Fragment>();
+        fragments.add(new FollowerFragment());
+        fragments.add(new FollowerFragment());
+        fragments.add(new FollowerFragment());
     }
-    private class ViewPagerAdapter extends FragmentStatePagerAdapter {
-        public ViewPagerAdapter(FragmentManager fm) {
+
+    private class setAdapterTask extends AsyncTask<Void, Void, Void> {
+        protected Void doInBackground(Void... params) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            pager.setAdapter(pagerAdapter);
+        }
+    }
+
+    private class PersonViewPagerAdapter extends FragmentStatePagerAdapter {
+        public PersonViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
+
         public Fragment getItem(int num) {
             return fragments.get(num);
         }
+
         @Override
         public int getCount() {
             return fragments.size();
         }
+
         @Override
         public CharSequence getPageTitle(int position) {
-            switch(position) {
-                case 0: return "Vedio";
-                case 1: return "Follower";
-                case 2: return "Following";
-                default: return null;
+            switch (position) {
+                case 0:
+                    return "Vedio";
+                case 1:
+                    return "Follower";
+                case 2:
+                    return "Following";
+                default:
+                    return null;
             }
         }
 
@@ -94,7 +132,7 @@ public class PersonalCenterFragment extends Fragment implements  MaterialTabList
 
     @Override
     public void onTabSelected(MaterialTab tab) {
-
+        pager.setCurrentItem(tab.getPosition());
     }
 
     @Override

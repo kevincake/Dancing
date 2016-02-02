@@ -9,6 +9,11 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/theme_color"
         />
+    <ImageView
+        android:layout_below="@+id/toolbar"
+        android:src="@mipmap/line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <it.neokree.materialtabs.MaterialTabHost
         android:id="@+id/tabHost"

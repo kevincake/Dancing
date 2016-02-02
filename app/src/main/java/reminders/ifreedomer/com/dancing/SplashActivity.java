@@ -41,6 +41,7 @@ public class SplashActivity extends Activity {
         ImageLoader.getInstance().init(config);
         setContentView(R.layout.activity_splash);
         SMSSDK.initSDK(this, Constants.appkey, Constants.appScret);
+        
         m_context = this;
         new Handler().postDelayed(new Runnable() {
             @Override

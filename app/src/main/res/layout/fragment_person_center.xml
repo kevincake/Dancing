@@ -17,36 +17,35 @@
             android:src="@mipmap/avatarbg" />
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
+            android:id="@+id/head_iv"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_centerInParent="true"
             android:src="@mipmap/splash"
             app:civ_border_color="#FF000000"
             app:civ_border_width="2dp" />
+
     </RelativeLayout>
 
-    <ScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/header_layout">
 
-        <RelativeLayout
+
+        <it.neokree.materialtabs.MaterialTabHost
+            android:id="@+id/content_tbhost"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="48dp"
+            app:accentColor="#ffc400"
+            app:primaryColor="@color/theme_color" />
 
-            <it.neokree.materialtabs.MaterialTabHost
-                android:id="@+id/content_tbhost"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                app:primaryColor="@color/theme_color"
-                app:accentColor="#ffc400" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/person_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/person_viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </RelativeLayout>
-    </ScrollView>
+    </LinearLayout>
 </RelativeLayout>
 
