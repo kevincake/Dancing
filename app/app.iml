@@ -129,6 +129,7 @@
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="android-observablescrollview-1.6.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="mockable-android-22" level="project" />
+    <orderEntry type="module" module-name="vitamio" exported="" />
     <orderEntry type="module" module-name="tagView" exported="" />
   </component>
 </module>

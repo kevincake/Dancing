@@ -17,7 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets { main { java.srcDirs = ['src/main/java', 'src/libs'] } }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/libs']
+            jni.srcDirs = ['src/main/jni', 'src/main/jni/']
+        }
+    }
 }
 repositories {
     flatDir {
@@ -30,7 +35,7 @@ dependencies {
     compile name: 'SMSSDK-2.0.1', ext: 'aar'
 
     compile project(':tagView')
-
+    compile project(':vitamio')
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.google.code.gson:gson:1.7.2'

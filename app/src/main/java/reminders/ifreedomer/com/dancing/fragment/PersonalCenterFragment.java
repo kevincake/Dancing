@@ -78,7 +78,7 @@ public class PersonalCenterFragment extends Fragment implements MaterialTabListe
     private void initFraments() {
         fragments = new ArrayList<Fragment>();
         fragments.add(new FollowerFragment());
-        fragments.add(new FollowerFragment());
+        fragments.add(new FollowingFragment());
         fragments.add(new FollowerFragment());
     }
 

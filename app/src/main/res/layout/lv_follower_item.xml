@@ -2,18 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@color/item_bg_color"
-    android:orientation="vertical">
+    android:minHeight="80dp"
+    android:background="@color/item_bg_color">
 
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/user_circle_iv"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
         android:src="@mipmap/splash"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp" />
@@ -21,8 +19,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="25dp"
         android:layout_toRightOf="@+id/user_circle_iv"
         android:orientation="vertical">
 
@@ -44,12 +42,14 @@
             android:textSize="10sp" />
 
     </LinearLayout>
+
     <CheckBox
-        android:layout_marginRight="20dp"
-        android:background="@mipmap/ic_menu"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
+        android:id="@+id/follower_checkbox"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:background="@mipmap/ic_menu" />
 
 </RelativeLayout>

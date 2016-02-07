@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 
@@ -16,9 +17,11 @@ import reminders.ifreedomer.com.dancing.bean.Follower;
 public class FollowerAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<Follower> mContents;
-    public FollowerAdapter(Context context, ArrayList<Follower> contents) {
+    private int mShowType;
+    public FollowerAdapter(int showType,Context context, ArrayList<Follower> contents) {
         mContext = context;
         mContents = contents;
+        mShowType = showType;
 
     }
     @Override
@@ -38,6 +41,26 @@ public class FollowerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return View.inflate(mContext, R.layout.lv_follower_item,null);
+        ViewHolder holder;
+        if (convertView==null){
+            convertView = View.inflate(mContext, R.layout.lv_follower_item,null);
+            holder = new ViewHolder();
+            convertView.setTag(holder);
+            holder.box = (CheckBox) convertView.findViewById(R.id.follower_checkbox);
+        }else{
+            holder = (ViewHolder) convertView.getTag();
+        }
+        holder.box.setVisibility(View.INVISIBLE);
+        if (mShowType==1){
+            holder.box.setVisibility(View.VISIBLE);
+        }
+        return convertView;
     }
+    class ViewHolder{
+        CheckBox box;
+
+
+    }
+
 }
+

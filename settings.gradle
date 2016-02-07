@@ -1,1 +1,1 @@
-include ':app', ':tagView'
+include ':app', ':tagView', ':vitamio'

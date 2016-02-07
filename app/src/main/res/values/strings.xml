@@ -49,4 +49,8 @@
     <string name="contry_code">86</string>
     <string name="verifycode_error">验证码错误</string>
     <string name="register_verifycode_notips">验证码为空</string>
+    <string name="dancing_total_time">总时长</string>
+    <string name="dancing_day_time">日均</string>
+    <string name="dancing_skill_point">舞蹈技术分</string>
+    <string name="commit_text">提交</string>
 </resources>

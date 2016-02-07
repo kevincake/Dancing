@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -18,7 +19,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     Button mLoginBtn;
     EditText phoneEt;
     EditText pwdEt;
+    TextView mRegisterTv;
     AVLoadingIndicatorView loadingView;
+    TextView mForgetTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         mLoginBtn.setOnClickListener(this);
         phoneEt = (EditText) findViewById(R.id.phonenum_et);
         pwdEt = (EditText) findViewById(R.id.pwd_et);
+        mRegisterTv = (TextView)findViewById(R.id.goto_register_tv);
         loadingView = (AVLoadingIndicatorView) findViewById(R.id.avloadingIndicatorView);
+        mRegisterTv.setOnClickListener(this);
+        mForgetTv = (TextView) findViewById(R.id.login_forget_tv);
+        mForgetTv.setOnClickListener(this);
 //        setUpToolBar();
     }
 
@@ -99,6 +106,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 //                    }
 //                });
 
+                break;
+            case R.id.goto_register_tv:
+                Intent gotoRegisterIntent = new Intent(this,RigsterPhoneNumActivity.class);
+                startActivity(gotoRegisterIntent);
+                break;
+            case R.id.login_forget_tv:
+                Intent forgetPwdIntent = new Intent(this,ForgetPwdActivity.class);
+                startActivity(forgetPwdIntent);
                 break;
             case R.id.back_iv:
                 this.finish();

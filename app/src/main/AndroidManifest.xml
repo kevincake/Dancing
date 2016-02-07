@@ -5,6 +5,7 @@
     <uses-sdk
         android:minSdkVersion="21"
         android:targetSdkVersion="23" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -14,7 +15,6 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:allowBackup="true"
@@ -45,6 +45,11 @@
             </intent-filter>
         </activity>
         <!-- <activity android:name=".TestActivity"></activity> -->
+        <activity android:name=".DancingPlanActivity" />
+        <activity android:name=".MediaPlayerActivity"
+            android:screenOrientation="landscape"
+            />
+        <activity android:name=".ForgetPwdActivity"></activity>
     </application>
 
 </manifest>

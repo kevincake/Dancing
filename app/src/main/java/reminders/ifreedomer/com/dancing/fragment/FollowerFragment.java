@@ -36,7 +36,7 @@ public class FollowerFragment extends Fragment {
     }
     private void initListView(ListView contentLv) {
         ArrayList<Follower> contents = new ArrayList<Follower>();
-        contentLv.setAdapter(new FollowerAdapter(getActivity(),contents));
+        contentLv.setAdapter(new FollowerAdapter(1,getActivity(),contents));
     }
 
 }
