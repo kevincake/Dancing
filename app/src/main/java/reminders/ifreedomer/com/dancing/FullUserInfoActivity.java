@@ -1,6 +1,5 @@
 package reminders.ifreedomer.com.dancing;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -37,7 +36,7 @@ import cz.msebera.android.httpclient.Header;
 import de.hdodenhof.circleimageview.CircleImageView;
 import reminders.ifreedomer.com.dancing.bean.User;
 
-public class FullUserInfoActivity extends Activity implements View.OnClickListener {
+public class FullUserInfoActivity extends BaseActivity implements View.OnClickListener {
     private TextView back2RegisterTv;
     private EditText userNameEt;
     private EditText pwdEt;

@@ -29,7 +29,8 @@
             android:layout_toRightOf="@+id/dancingplan_chapter_tv"
             android:text="简单双腿交叉"
             android:textColor="@color/gray_text_color"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:id="@+id/dancingplan_name_tv"/>
 
         <TextView
 

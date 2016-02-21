@@ -1,5 +1,6 @@
 package reminders.ifreedomer.com.dancing;
 
+import reminders.ifreedomer.com.dancing.bean.Lesson;
 import reminders.ifreedomer.com.dancing.bean.SMSVerifyBean;
 import reminders.ifreedomer.com.dancing.bean.User;
 
@@ -17,6 +18,15 @@ public class Global {
 
     public static User mGlobalUser;
     public static SMSVerifyBean mGlobalVerifyBean ;
+    public static Lesson mLesson;
+
+    public static Lesson getmLesson() {
+        return mLesson;
+    }
+
+    public static void setmLesson(Lesson mLesson) {
+        Global.mLesson = mLesson;
+    }
 
     public static SMSVerifyBean getmGlobalVerifyBean() {
         return mGlobalVerifyBean;

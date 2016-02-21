@@ -2,7 +2,6 @@ package reminders.ifreedomer.com.dancing;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +20,7 @@ import cn.smssdk.SMSSDK;
 import reminders.ifreedomer.com.dancing.bean.SMSVerifyBean;
 
 
-public class RigsterPhoneNumActivity extends AppCompatActivity implements View.OnClickListener {
+public class RigsterPhoneNumActivity extends BaseActivity implements View.OnClickListener {
 
     EditText phoneNumEt = null;
     TextView getCodeTv = null;
@@ -45,12 +44,20 @@ public class RigsterPhoneNumActivity extends AppCompatActivity implements View.O
         verifyCodeEt = (EditText) findViewById(R.id.verifycode_et);
         registerBtn.setOnClickListener(this);
         goLoginTv.setOnClickListener(this);
-
+        loadingIndicatorView = (AVLoadingIndicatorView) findViewById(R.id.avloadingIndicatorView);
         eh = new EventHandler() {
 
             @Override
             public void afterEvent(int event, int result, Object data) {
-                loadingIndicatorView.setVisibility(View.INVISIBLE);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadingIndicatorView.setVisibility(View.INVISIBLE);
+//stuff that updates ui
+
+                    }
+                });
+
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     //回调完成
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
@@ -63,7 +70,15 @@ public class RigsterPhoneNumActivity extends AppCompatActivity implements View.O
                         //返回支持发送验证码的国家列表
                     }
                 } else {
-                    Util.showWhiteToast(RigsterPhoneNumActivity.this, getString(R.string.verifycode_error), Toast.LENGTH_LONG);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Util.showWhiteToast(RigsterPhoneNumActivity.this, getString(R.string.verifycode_error), Toast.LENGTH_LONG);
+//stuff that updates ui
+
+                        }
+                    });
+
                     ((Throwable) data).printStackTrace();
                 }
             }

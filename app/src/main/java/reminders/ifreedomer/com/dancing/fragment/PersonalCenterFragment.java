@@ -2,7 +2,6 @@ package reminders.ifreedomer.com.dancing.fragment;
 
 
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
+import reminders.ifreedomer.com.dancing.Global;
 import reminders.ifreedomer.com.dancing.R;
 
 /**
@@ -69,8 +69,8 @@ public class PersonalCenterFragment extends Fragment implements MaterialTabListe
         }
 
         ImageLoader loader = ImageLoader.getInstance();
-//        String url = Global.getmGlobalUser().getHeadIcon();
-//        loader.displayImage(url, headerIv);
+        String url = Global.getmGlobalUser().getHeadIcon();
+        loader.displayImage(url, headerIv);
 
         return view;
     }
@@ -82,16 +82,6 @@ public class PersonalCenterFragment extends Fragment implements MaterialTabListe
         fragments.add(new FollowerFragment());
     }
 
-    private class setAdapterTask extends AsyncTask<Void, Void, Void> {
-        protected Void doInBackground(Void... params) {
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            pager.setAdapter(pagerAdapter);
-        }
-    }
 
     private class PersonViewPagerAdapter extends FragmentPagerAdapter {
         public PersonViewPagerAdapter(FragmentManager fm) {

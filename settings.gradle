@@ -1,1 +1,1 @@
-include ':app', ':tagView', ':vitamio'
+include ':app', ':tagView', ':vitamio', ':Downloader'

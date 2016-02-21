@@ -1,24 +1,31 @@
 package reminders.ifreedomer.com.dancing;
 
 
-import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
 
-public class MediaPlayerActivity extends Activity {
-
+public class MediaPlayerActivity extends BaseActivity {
+    private static final int NET_VIDEO_TYPE = 1;
+    private static final int LOCAL_VIDEO_TYPE = 2;
     private String path;
     private VideoView mVideoView;
     private EditText mEditText;
+
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -26,32 +33,30 @@ public class MediaPlayerActivity extends Activity {
         if (!LibsChecker.checkVitamioLibs(this))
             return;
         setContentView(R.layout.activity_media_player);
-//        mEditText = (EditText) findViewById(R.id.surface_view);
         mVideoView = (VideoView) findViewById(R.id.surface_view);
-        path = this.getFilesDir() + "/test1.mp4";
-        Log.e("wuyihua===1111=", path);
-        if (path == "") {
-            // Tell the user to provide a media file URL/path.
-            Toast.makeText(this, "Please edit VideoViewDemo Activity, and set path" + " variable to your media file URL/path", Toast.LENGTH_LONG).show();
-            return;
-        } else {
-            /*
-			 * Alternatively,for streaming media you can use
-			 * mVideoView.setVideoURI(Uri.parse(URLstring));
-			 */
-            mVideoView.setVideoPath(path);
-            mVideoView.setMediaController(new MediaController(this));
-            mVideoView.requestFocus();
+        Intent urlIntent = getIntent();
+        String url = urlIntent.getStringExtra(Constants.VIDEO_URL);
+        int type = getUrlType(url);
+        switch (type) {
+            case LOCAL_VIDEO_TYPE:
+                openVideoFromLocal(url);
+                break;
+            case NET_VIDEO_TYPE:
+                openVideoFromUrl(url);
+                break;
 
-            mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mediaPlayer) {
-                    // optional need Vitamio 4.0
-                    mediaPlayer.setPlaybackSpeed(1.0f);
-                }
-            });
         }
+    }
 
+    public int getUrlType(String url) {
+        if (url == null) {
+            return -1;
+        }
+        if (url.contains("http://")) {
+            return NET_VIDEO_TYPE;
+        } else {
+            return LOCAL_VIDEO_TYPE;
+        }
     }
 
     public void startPlay(View view) {
@@ -60,6 +65,54 @@ public class MediaPlayerActivity extends Activity {
         if (!TextUtils.isEmpty(url)) {
             mVideoView.setVideoPath(url);
         }
+    }
+
+    private void inputStream2File(InputStream ins, File file) {
+//        File file = new File(path);
+        OutputStream outputStream = null;
+        try {
+
+            outputStream = new FileOutputStream(file);
+            int bytesRead = 0;
+            byte[] bytes = new byte[1024];
+            int read = 0;
+            while ((read = ins.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+            outputStream.close();
+//            ins.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void openVideoFromUrl(String url) {
+        mVideoView.setVideoURI(Uri.parse(url));
+        mVideoView.setMediaController(new MediaController(this));
+        mVideoView.requestFocus();
+
+        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                // optional need Vitamio 4.0
+                mediaPlayer.setPlaybackSpeed(1.0f);
+            }
+        });
+    }
+
+    public void openVideoFromLocal(String url) {
+        mVideoView.setVideoURI(Uri.parse(url));
+        mVideoView.setMediaController(new MediaController(this));
+        mVideoView.requestFocus();
+
+        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                // optional need Vitamio 4.0
+                mediaPlayer.setPlaybackSpeed(1.0f);
+            }
+        });
     }
 
     public void openVideo(View View) {

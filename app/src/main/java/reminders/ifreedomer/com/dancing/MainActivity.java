@@ -1,6 +1,5 @@
 package reminders.ifreedomer.com.dancing;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -8,13 +7,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -24,7 +27,7 @@ import reminders.ifreedomer.com.dancing.adapter.GenericAdapter;
 import reminders.ifreedomer.com.dancing.listener.MainPageListener;
 
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     String TAG = "reminders.ifreedomer.com.dancing";
     private VideoView mVideoView = null;
     private ViewPager mViewPager = null;
@@ -51,6 +54,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        setVideoViewFullScreen();
         initVideoView();
         addAllDots2List();
         initViewPager();
@@ -69,6 +73,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         registerBtn.setOnClickListener(this);
         loginBtn.setOnClickListener(this);
 
+    }
+    void  setVideoViewFullScreen(){
+        DisplayMetrics metrics = new DisplayMetrics(); getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        android.widget.RelativeLayout.LayoutParams params = (android.widget.RelativeLayout.LayoutParams) mVideoView.getLayoutParams();
+        params.width =  metrics.widthPixels;
+        params.height = metrics.heightPixels;
+        params.leftMargin = 0;
+        mVideoView.setLayoutParams(params);
     }
 
     void initVideoView() {
@@ -165,6 +177,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         int id = v.getId();
         if (id == R.id.register_btn) {
             Log.e(TAG, "jinru");
+            MobclickAgent.onEvent(this,Constants.UM_REGISTER_ID);
             Intent register = new Intent(this, RigsterPhoneNumActivity.class);
             startActivity(register);
         } else if (id == R.id.login_btn) {
@@ -172,5 +185,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
         }
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return super.onKeyDown(keyCode, event);
     }
 }

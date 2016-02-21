@@ -1,9 +1,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/theme_color"
-    tools:context="reminders.ifreedomer.com.dancing.fragment.LessonsFragment">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/theme_color"
+             tools:context="reminders.ifreedomer.com.dancing.fragment.LessonsFragment">
 
     <com.baoyz.widget.PullRefreshLayout
         android:id="@+id/swipeRefreshLayout"
@@ -13,7 +14,16 @@
         <ListView
             android:id="@+id/lessons_lv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
     </com.baoyz.widget.PullRefreshLayout>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avloadingIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        app:indicator="Pacman"
+        app:indicator_color="@color/WHITE"/>
 
 </FrameLayout>

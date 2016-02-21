@@ -53,4 +53,14 @@
     <string name="dancing_day_time">日均</string>
     <string name="dancing_skill_point">舞蹈技术分</string>
     <string name="commit_text">提交</string>
+    <string name="account_cannot_null">账号不能为空哦</string>
+    <string name="pwd_cannot_null">密码不能为空哦</string>
+    <string name="account_format_error">账号格式不对</string>
+    <string name="reclick_exit_app">再按一次退出</string>
+    <string name="pre_order_des">第</string>
+    <string name="after_order_des">节</string>
+    <string name="discover">发现</string>
+    <string name="careful">关注</string>
+    <string name="newest">最新</string>
+    <string name="friend">好友</string>
 </resources>

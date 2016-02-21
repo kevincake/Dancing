@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:background="@color/theme_color"
-    android:layout_height="match_parent"
-    tools:context="reminders.ifreedomer.com.dancing.DancingPlanActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/theme_color"
+                tools:context="reminders.ifreedomer.com.dancing.DancingPlanActivity">
 
     <ListView
-        android:dividerHeight="5dp"
         android:id="@+id/dancing_plan_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:dividerHeight="5dp"/>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avloadingIndicatorView"
+        app:indicator="Pacman"
+        app:indicator_color="@color/WHITE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"/>
 </RelativeLayout>

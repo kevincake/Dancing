@@ -1,19 +1,15 @@
 package reminders.ifreedomer.com.dancing;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
-import cn.smssdk.SMSSDK;
+import com.umeng.analytics.MobclickAgent;
 
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends BaseActivity {
     private Context m_context;
     private static final int JUMP_2_MAIN = 1;
     private int mSpashShowTime = 3000;
@@ -37,11 +33,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
-        ImageLoader.getInstance().init(config);
         setContentView(R.layout.activity_splash);
-        SMSSDK.initSDK(this, Constants.appkey, Constants.appScret);
-        
         m_context = this;
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -52,4 +44,15 @@ public class SplashActivity extends Activity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 }

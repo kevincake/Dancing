@@ -13,7 +13,7 @@
     </style>
 
     <style name="AppTheme" parent="@style/AppBaseTheme"></style>
-
+    <style name="NoAppTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
     <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
         <!--
     Background for the search query section (e.g. EditText)

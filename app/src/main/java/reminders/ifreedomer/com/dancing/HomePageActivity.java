@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -27,7 +26,7 @@ import reminders.ifreedomer.com.dancing.fragment.SocialFragment;
 /**
  * Created by neokree on 30/12/14.
  */
-public class HomePageActivity extends AppCompatActivity implements MaterialTabListener {
+public class HomePageActivity extends BaseActivity implements MaterialTabListener {
     private ViewPager pager;
     private ViewPagerAdapter pagerAdapter;
     MaterialTabHost tabHost;

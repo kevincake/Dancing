@@ -1,20 +1,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <VideoView
         android:id="@+id/bg_videoview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:visibility="visible" />
+        android:visibility="visible"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/ad_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"/>
 
     <LinearLayout
         android:id="@+id/dot_layout"
@@ -30,28 +30,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
-            android:src="@mipmap/dot" />
+            android:src="@mipmap/dot"/>
 
         <ImageView
             android:id="@+id/dot2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/dot" />
+            android:src="@mipmap/dot"/>
 
         <ImageView
             android:id="@+id/dot3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/dot" />
+            android:src="@mipmap/dot"/>
 
         <ImageView
             android:id="@+id/dot4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/dot" />
+            android:src="@mipmap/dot"/>
 
 
     </LinearLayout>
@@ -73,7 +73,7 @@
             android:background="@drawable/register_shape"
             android:text="@string/main_register_text"
             android:textColor="#ffffffff"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/login_btn"
@@ -85,7 +85,7 @@
             android:background="@drawable/login_shape"
             android:text="@string/main_login_text"
             android:textColor="#ff000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
     </RelativeLayout>
 
 </RelativeLayout>
