@@ -4,10 +4,9 @@
              android:layout_height="match_parent"
              tools:context="reminders.ifreedomer.com.dancing.fragment.DiscoverFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/discover_recycleview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

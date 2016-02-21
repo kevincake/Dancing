@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class SocialFragment extends Fragment implements MaterialTabListener {
     ViewPager pager;
     SocialFragmentAdapter pagerAdapter;
     View view;
+    private MaterialTabHost tabHost;
 
     public SocialFragment() {
         // Required empty public constructor
@@ -56,16 +58,24 @@ public class SocialFragment extends Fragment implements MaterialTabListener {
 
     private void initFraments() {
         fragments = new ArrayList<Fragment>();
-        fragments.add(new FollowerFragment());
+        fragments.add(new DiscoverFragment());
         fragments.add(new FollowingFragment());
         fragments.add(new NewestFragment());
-        fragments.add(new NewestFragment());
+//        fragments.add(new NewestFragment());
 //        fragments.add(new NewestFragment());
     }
-
+    void  setFullWidth(){
+        DisplayMetrics metrics = new DisplayMetrics(); getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        android.widget.LinearLayout.LayoutParams params = (android.widget.LinearLayout.LayoutParams) tabHost.getLayoutParams();
+        params.width =  metrics.widthPixels;
+//        params.height = metrics.heightPixels;
+        params.leftMargin = 0;
+        tabHost.setLayoutParams(params);
+    }
     private void initTab() {
-        final MaterialTabHost tabHost = (MaterialTabHost) view.findViewById(R.id.content_tbhost);
-        tabHost.setPadding(150,0,150,0);
+        tabHost = (MaterialTabHost) view.findViewById(R.id.content_tbhost);
+        setFullWidth();
+//        tabHost.setPadding(150,0,150,0);
 //        tabHost.setMinimumWidth(getActivity().getWindowManager().getDefaultDisplay().getWidth());
         pager = (ViewPager) view.findViewById(R.id.person_viewpager);
         // init view pager
